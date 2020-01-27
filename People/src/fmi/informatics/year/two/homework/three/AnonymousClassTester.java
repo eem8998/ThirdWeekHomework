@@ -8,24 +8,29 @@ public class AnonymousClassTester {
 	public static void main(String[] args) {
 		AnonymousClassTester tester = new AnonymousClassTester();
 		tester.testAnonymousClass();
-		tester.studentNameInstanceTest();
+		
+		try {
+			tester.studentNameInstanceTest();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public void studentNameInstanceTest() {
-		System.out.println(Student.class.getName()); //Не знам как да го направя, помощ!
-//		try {
-//			Class testForName = Class.forName(Student);
-//			Student testInstance = (Student)testForName.newInstance();
-//			testInstance.setName("Tosho");
-//			testInstance.setEgn(333);
-//			testInstance.setUniversity("PU");
-//			testInstance.setSpeciality("INF");
-//			testInstance.setFacNumber(331);
-//		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
+	public void studentNameInstanceTest() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		
+		//System.out.println(Student.class.getName());
+			Student testInstance = (Student)Class.forName(Student.class.getName()).newInstance();
+			testInstance.setName("Tosho");
+			testInstance.setEgn(333);
+			testInstance.setUniversity("PU");
+			testInstance.setSpeciality("INF");
+			testInstance.setFacNumber(331);
+			System.out.println("Student created!");
+			System.out.printf("%s %d %s %s %d", 
+					testInstance.getName(), testInstance.getEgn(), 
+					testInstance.getUniversity(), testInstance.getSpeciality(), 
+					testInstance.getFacNumber());
 	}
 	
 	public void testAnonymousClass() {

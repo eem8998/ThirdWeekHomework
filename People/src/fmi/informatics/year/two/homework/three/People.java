@@ -19,7 +19,7 @@ public class People {
 			
 			if(people.get(i) instanceof Professor) {
 				professors++;
-			}else if(people.get(i) instanceof RichStudent2) { //Важно! Ако се използва Student преди RichStudent2 пуска RichStudent2 в students, заради онаследяването
+			}else if(people.get(i) instanceof RichStudent2) { //Р’Р°Р¶РЅРѕ! РђРєРѕ СЃРµ РёР·РїРѕР»Р·РІР° Student РїСЂРµРґРё RichStudent2 РїСѓСЃРєР° RichStudent2 РІ students, Р·Р°СЂР°РґРё РѕРЅР°СЃР»РµРґСЏРІР°РЅРµС‚Рѕ
 				richStudents++;
 			}else if(people.get(i) instanceof Student) {
 				students++;
@@ -28,7 +28,7 @@ public class People {
 		
 		System.out.printf("Out of %d people, there are:\n%d professors\n%d students\n%d rich students\n\n", totalPeople, professors, students, richStudents);
 		
-		for(Person studyingStudents : people) {	//Исках да опитам for-each цикъл, не знам как работи точно...
+		for(Person studyingStudents : people) {	//РСЃРєР°С… РґР° РѕРїРёС‚Р°Рј for-each С†РёРєСЉР», РЅРµ Р·РЅР°Рј РєР°Рє СЂР°Р±РѕС‚Рё С‚РѕС‡РЅРѕ...
 			if(studyingStudents instanceof Student) {
 				studyingStudents.study();
 			}

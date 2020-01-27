@@ -1,6 +1,7 @@
 package fmi.informatics.year.two.homework.three;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 //import fmi.informatics.composition.RichStudent;
 import fmi.informatics.composition.RichStudent2;
@@ -11,14 +12,49 @@ import fmi.informatics.people.Student;
 public class PeopleTesterClass {
 
 	public static void main(String[] args) {
-		testOne();
-		
+		testAddingArray();
+		studentGeneratorTest(5);
 	}
 	
+	public static void studentGeneratorTest(int generateStudents) {
+		ArrayList<Student> students = new ArrayList<Student>();
+		int generatedStudents = 0;
+		try {
+			for(int i = 0; i < generateStudents; i++) {
+				students.add(studentGenerator());
+				generatedStudents++;
+				System.out.println("Student No " + (i+1) + ": " + students.get(i).toString());
+			}
+		} catch (Exception e) {
+			System.err.println("somehow got an error");
+		} finally {
+			System.out.printf("Expected result of generated students is: %d and the total generated students are: %d",generateStudents , generatedStudents);
+		}
+	}
 	
+	public static Student studentGenerator() {
+
+		String[] names = {"Ivan", "Mariya", "Stoyan", "Petyr", "Petya", "Lilly"};
+		String[] specialities = {"Informatics", "STD", "BIT", "Mathematics"};
+		String[] universities = {"PU", "NBU", "SU", "UHT"};
+		int arrayIndex = ThreadLocalRandom.current().nextInt(0, names.length);
+		String name = names[arrayIndex];
+		
+		arrayIndex = ThreadLocalRandom.current().nextInt(0, specialities.length);
+		String speciality = specialities[arrayIndex];
+		
+		arrayIndex = ThreadLocalRandom.current().nextInt(0, universities.length);
+		String university = universities[arrayIndex];
+		
+		int facNumber = ThreadLocalRandom.current().nextInt(111111, 999999);
+		
+		int egn = ThreadLocalRandom.current().nextInt(111111, 999999);
+		
+		return new Student(name, egn, university, speciality, facNumber);
+	}
+
 	
-	
-	private static void testOne() {
+	private static void testAddingArray() {
 		ArrayList<Person> test1 = new ArrayList<Person>();
 		Student testStudent1 = new Student("Gosho", 132, "PU", "INF", 133);
 		Student testStudent2 = new Student("Kiro", 1333, "PU", "INF", 121);
@@ -54,7 +90,7 @@ public class PeopleTesterClass {
 //		RichStudent testRandomPerson1 = new RichStudent("Kris", 999, "PU", "INF", 999);
 //		RichStudent testRandomPerson2 = new RichStudent("Rado", 669, "PU", "INF", 966);
 //		test1.add(testRandomPerson1);
-//		test1.add(testRandomPerson2);  //Гърмят с грешка понеже не са от тип Person
+//		test1.add(testRandomPerson2);  //Р“СЉСЂРјСЏС‚ СЃ РіСЂРµС€РєР° РїРѕРЅРµР¶Рµ РЅРµ СЃР° РѕС‚ С‚РёРї Person
 		
 		People.showStats(test1);
 	}

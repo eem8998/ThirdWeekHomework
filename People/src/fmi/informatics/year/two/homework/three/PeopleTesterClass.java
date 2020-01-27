@@ -18,17 +18,20 @@ public class PeopleTesterClass {
 	
 	public static void studentGeneratorTest(int generateStudents) {
 		ArrayList<Student> students = new ArrayList<Student>();
-		int generatedStudents = 0;
+		int expectedStudents = 15;
 		try {
 			for(int i = 0; i < generateStudents; i++) {
 				students.add(studentGenerator());
-				generatedStudents++;
 				System.out.println("Student No " + (i+1) + ": " + students.get(i).toString());
 			}
 		} catch (Exception e) {
 			System.err.println("somehow got an error");
 		} finally {
-			System.out.printf("Expected result of generated students is: %d and the total generated students are: %d",generateStudents , generatedStudents);
+			if(expectedStudents == generateStudents) {
+				System.out.printf("Expected result of generated students is: %d and the total generated students are: %d",generateStudents , expectedStudents);
+			}else {
+				System.err.printf("Expected result of generated students is: %d and the total generated students are: %d",generateStudents , expectedStudents);
+			}
 		}
 	}
 	
